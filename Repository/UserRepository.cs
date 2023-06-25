@@ -14,12 +14,12 @@ namespace Repository
 
         public IEnumerable<User> GetAllUsers(bool trackChanges) =>
             FindAll(trackChanges)
-                .OrderBy(c => c.UserName)
+                .OrderBy(c => c.FirstName)
                .ToList();
 
         public User GetUser(string userId, bool trackChanges)
         {
-            var user = FindByCondition(c => c.Id.Equals(userId), trackChanges)
+            var user = FindByCondition(c => c.FirstName.Equals(userId), trackChanges)
                 .SingleOrDefault();
 
             return user == null ? throw new Exception("restaurant not found.") : user;

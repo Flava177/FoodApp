@@ -12,6 +12,11 @@ namespace Repository
     {
         public OrderRepository(RepositoryContext repositoryContext) : base(repositoryContext) { }
 
+        public void CreateOrderForMenu(Guid restaurantId, string userId, int orderStatusId, Guid dispatchDriverId, Order order)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Order> GetAllOrders(bool trackChanges) =>
             FindAll(trackChanges)
                .OrderBy(c => c.OrderDate)
@@ -26,14 +31,6 @@ namespace Repository
         }
 
 
-        public void CreateOrderForMenu(Guid restaurantId, string userId, int orderStatusId, Guid dispatchDriverId, Order order)
-        {
-            order.RestaurantId = restaurantId;
-            order.UserId = userId;
-            order.OrderStatusId = orderStatusId;
-            order.DispatchDriverId = dispatchDriverId;
-
-            Create(order);
-        }
+       
     }
 }

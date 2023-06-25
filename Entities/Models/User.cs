@@ -10,7 +10,8 @@ namespace Entities.Models
 {
     public class User
     {
-
+        [Key]
+        public int Id { get; set; }
         [Required(ErrorMessage = "FirstName is a required field.")]
         public string FirstName { get; set; }
 
