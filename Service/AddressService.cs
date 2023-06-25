@@ -46,26 +46,15 @@ namespace Service
 
         public AddressDto CreateAddress(AddressForCreationDto address)
         {
-            var addressEntity = new Address
-            {
-                Id = Guid.NewGuid(),
-                Street = address.Street,
-                Area = address.Area,
-                City = address.City
-            };
+            var addressEntity = _mapper.Map<Address>(address);
 
             _repository.Address.CreateAddress(addressEntity);
 
             _repository.Save();
 
-            var addressDto = new AddressDto(
-                addressEntity.Id,
-                addressEntity.Street,
-                addressEntity.Area,
-                addressEntity.City
-            );
+            var addressToReturn = _mapper.Map<AddressDto>(addressEntity);
 
-            return addressDto;
+            return addressToReturn;
         }
     }
 }

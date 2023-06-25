@@ -23,8 +23,8 @@ namespace Entities.Models
         [Range(0.01, double.MaxValue, ErrorMessage = "Amount must be greater than 0")]
         public decimal TotalAmount { get; set; }
 
-        [Range(0, 10, ErrorMessage = "Rating must be between 0 and 10.")]
-        public int? RestaurantRating { get; set; }
+        //[Range(0, 10, ErrorMessage = "Rating must be between 0 and 10.")]
+        //public int? RestaurantRating { get; set; }
 
         [ForeignKey(nameof(User))]
         public int UserId { get; set; }
@@ -41,6 +41,10 @@ namespace Entities.Models
         [ForeignKey(nameof(DispatchDriver))]
         public Guid DispatchDriverId { get; set; }
         public DispatchDriver? DispatchDriver { get; set; }
+
+        [ForeignKey(nameof(MenuItem))]
+        public Guid MenuItemId { get; set; }
+        public MenuItem? MenuItem { get; set; }
 
     }
 }

@@ -11,6 +11,8 @@ namespace Service.Contracts
     {
         IEnumerable<OrderDto> GetAllOrders(Guid restaurantId, bool trackChanges);
         OrderDto GetOrder(Guid restaurantId, Guid id, bool trackChanges);
-        //OrderDto CreateOrderForMenu(OrderForCreationDto orderForCreationDto, bool trackChanges);
+        OrderDto OrderForCreation(Guid restaurantId, Guid menuItemId, int userId, int orderStatusId, Guid dispatchDriver, OrderForCreationDto orderForCreation, bool trackChanges);
+
+
     }
 }

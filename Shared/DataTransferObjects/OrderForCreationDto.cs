@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace Shared.DataTransferObjects
 {
-    internal class OrderForCreationDto
-    {
-    }
+    public record OrderForCreationDto(DateTime OrderDate, DateTime RequestedDeliveryTime, decimal TotalAmount);
+
 }

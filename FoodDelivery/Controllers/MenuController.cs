@@ -45,6 +45,7 @@ namespace FoodDelivery.Controllers
                 return BadRequest("MenuItemForCreationDto object is null");
 
             var menuToReturn = _service.MenuService.MenuItemForCreation(restaurantId, menuItem, trackChanges: false);
+
             return CreatedAtRoute("MenuById", 
                 new { restaurantId, id = menuToReturn.Id },
                 menuToReturn);

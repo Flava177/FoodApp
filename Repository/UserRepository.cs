@@ -17,10 +17,25 @@ namespace Repository
                 .OrderBy(c => c.FirstName)
                .ToList();
 
-        public User GetUser(string userId, bool trackChanges) =>
+        //public User GetUser(int userId, bool trackChanges) =>
 
-            FindByCondition(c => c.FirstName.Equals(userId), trackChanges)
-                .SingleOrDefault() ?? throw new Exception("Status not found.");
+        //    FindByCondition(c => c.FirstName.Equals(userId), trackChanges)
+        //        .SingleOrDefault() ?? throw new Exception("Status not found.");
+
+        public User GetUser(int userId, bool trackChanges)
+        {
+            var user = FindByCondition(c => c.Id == userId, trackChanges)
+                        .SingleOrDefault();
+
+            if (user == null)
+            {
+                throw new Exception("User not found.");
+            }
+
+            return user;
+        }
+
+
 
     }
 

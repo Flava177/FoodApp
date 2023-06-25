@@ -12,5 +12,6 @@ namespace Contracts
         IEnumerable<MenuItem> GetAllMenus (Guid restaurantId, bool trackChanges);
         MenuItem GetMenu(Guid restaurantId, Guid id, bool trackChanges);
         void CreateMenuItem(Guid restaurantId, MenuItem menuItem);
+
     }
 }

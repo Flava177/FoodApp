@@ -16,12 +16,12 @@ using System.Xml.Linq;
 namespace Service
 {
     internal sealed class OrderService : IOrderService
-    { 
+    {
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
         private readonly IMapper _mapper;
-        public OrderService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper) 
-        { 
+        public OrderService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
+        {
             _repository = repository;
             _logger = logger;
             _mapper = mapper;
@@ -43,45 +43,35 @@ namespace Service
         {
             var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges) ?? throw new RestaurantNotFoundException(restaurantId);
 
-            var order = _repository.Order.GetOrder(restaurantId, id, trackChanges);
-            if (order is null)
-                throw new OrderNotFoundException(id);
-
+            var order = _repository.Order.GetOrder(restaurantId, id, trackChanges) ?? throw new OrderNotFoundException(id);
             var orderDto = _mapper.Map<OrderDto>(order);
 
             return orderDto;
         }
 
-        //public OrderDto CreateOrderForMenu(Guid restaurantId, string userId, int orderStatusId, Guid dispatchDriverId, OrderForCreationDto orderForCreationDto, bool trackChanges)
-        //{
-        //    var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges)
-        //    ?? throw new RestaurantNotFoundException(restaurantId);
+        public OrderDto OrderForCreation(Guid restaurantId, Guid menuItemId, int userId, int orderStatusId, Guid dispatchDriver, OrderForCreationDto orderForCreation, bool trackChanges)
+        {
+            var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges) ?? throw new RestaurantNotFoundException(restaurantId);
 
-        //   var orderEntity = new Order
-        //   {
-        //       RestaurantId = restaurantId,
-        //       UserId = userId,
-        //       OrderStatusId = orderStatusId,
-        //       DispatchDriverId = dispatchDriverId,
-        //       OrderDate = orderForCreationDto.OrderDate,
-        //       RequestedDeliveryTime = orderForCreationDto.RequestedDeliveryTime,
-        //       TotalAmount = orderForCreationDto.TotalAmount,
-        //       RestaurantRating = orderForCreationDto.RestaurantRating
+            var menuItem = _repository.Menu.GetMenu(restaurantId, menuItemId, trackChanges) ?? throw new MenuNotFoundException(menuItemId);
 
-        //   };
+            var dispatch = _repository.DispatchDriver.GetDriver(dispatchDriver, trackChanges) ?? throw new MenuNotFoundException(menuItemId);
 
-        //    _repository.Order.CreateOrderForMenu(restaurantId, userId, orderStatusId, dispatchDriverId, orderEntity);
-        //    _repository.Save();
+            var getUserId = _repository.User.GetUser(userId, trackChanges);
+          
 
-        //    var orderToReturn = new OrderDto(
-        //      orderEntity.Id,
-        //      orderEntity.OrderDate,
-        //      orderEntity.RequestedDeliveryTime,
-        //      orderEntity.TotalAmount,
-        //      (int)orderEntity.RestaurantRating
-        //  );
+            var status = _repository.StatusValue.GetStatus(orderStatusId, trackChanges) ?? throw new Exception("Order Status Unknown..Please wait");
 
-        //    return orderToReturn;
-        //}
+            var orderEntity = _mapper.Map<Order>(orderForCreation);
+
+            
+
+            _repository.Order.CreateOrder(restaurantId, menuItemId, userId, orderStatusId, dispatchDriver, orderEntity);
+            _repository.Save();
+
+            var orderToReturn = _mapper.Map<OrderDto>(orderEntity);
+            return orderToReturn;
+
+        }
     }
 }

@@ -47,29 +47,12 @@ namespace Service
 
         public RestaurantDto CreateRestaurant(RestaurantForCreationDto restaurant)
         {
-            var restaurantEntity = new Restaurant
-            {
-                Id = Guid.NewGuid(),
-                Name = restaurant.Name,
-                Email = restaurant.Email,
-                PhoneNumber = restaurant.PhoneNumber,
-                StartTime = restaurant.StartTime,
-                EndTime = restaurant.EndTime,
-                AddressId = restaurant.AddressId
-            };
+            var restaurantEntity = _mapper.Map<Restaurant>(restaurant);
 
             _repository.Restaurant.CreateRestaurant(restaurantEntity);
             _repository.Save();
 
-            var restaurantToReturn = new RestaurantDto(
-                restaurantEntity.Id,
-                restaurantEntity.Name,
-                restaurantEntity.Email,
-                restaurantEntity.PhoneNumber,
-                restaurantEntity.StartTime,
-                restaurantEntity.EndTime,
-                restaurantEntity.AddressId
-            );
+            var restaurantToReturn = _mapper.Map<RestaurantDto>(restaurantEntity);
 
             return restaurantToReturn;
 

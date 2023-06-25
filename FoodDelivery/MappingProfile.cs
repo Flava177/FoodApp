@@ -16,6 +16,13 @@ namespace FoodDelivery
             CreateMap<MenuItem, MenuItemDto>();
             CreateMap<User, UserDto>();
             CreateMap<Order, OrderDto>();
+
+            //Creation DTO's
+            CreateMap<OrderForCreationDto, Order>();
+            CreateMap<AddressForCreationDto, Address>();
+            CreateMap<DispatchDriverForCreationDto, DispatchDriver>();
+            CreateMap<RestaurantForCreationDto, Restaurant>();
+            CreateMap<MenuItemForCreationDto, MenuItem>();
         }
     }
 }

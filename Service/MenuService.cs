@@ -57,24 +57,13 @@ namespace Service
         public MenuItemDto MenuItemForCreation(Guid restaurantId, MenuItemForCreationDto menuItemForCreation, bool trackChanges)
         {
             var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges) ?? throw new RestaurantNotFoundException(restaurantId);
-            var menuEntity = new MenuItem
-            {
-                Id = Guid.NewGuid(),
-                RestaurantId = restaurantId,
-                Name = menuItemForCreation.Name,
-                Description = menuItemForCreation.Description,
-                Price = menuItemForCreation.Price
-            };
+
+            var menuEntity = _mapper.Map<MenuItem>(menuItemForCreation);
 
             _repository.Menu.CreateMenuItem(restaurantId, menuEntity);
             _repository.Save();
 
-            var menuToReturn = new MenuItemDto(
-               menuEntity.Id,
-               menuEntity.Name,
-               menuEntity.Description,
-               menuEntity.Price
-           );
+            var menuToReturn = _mapper.Map<MenuItemDto>(menuEntity);
 
             return menuToReturn;
         }

@@ -124,6 +124,9 @@ namespace FoodDelivery.Migrations
                     b.Property<Guid>("DispatchDriverId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("MenuItemId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("OrderDate")
                         .HasColumnType("datetime2");
 
@@ -136,9 +139,6 @@ namespace FoodDelivery.Migrations
                     b.Property<Guid>("RestaurantId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<int?>("RestaurantRating")
-                        .HasColumnType("int");
-
                     b.Property<decimal>("TotalAmount")
                         .HasColumnType("decimal(18,2)");
 
@@ -148,6 +148,8 @@ namespace FoodDelivery.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("DispatchDriverId");
+
+                    b.HasIndex("MenuItemId");
 
                     b.HasIndex("OrderStatusId");
 
@@ -309,6 +311,12 @@ namespace FoodDelivery.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Entities.Models.MenuItem", "MenuItem")
+                        .WithMany("Orders")
+                        .HasForeignKey("MenuItemId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Entities.Models.OrderStatus", "OrderStatus")
                         .WithMany()
                         .HasForeignKey("OrderStatusId")
@@ -328,6 +336,8 @@ namespace FoodDelivery.Migrations
                         .IsRequired();
 
                     b.Navigation("DispatchDriver");
+
+                    b.Navigation("MenuItem");
 
                     b.Navigation("OrderStatus");
 
@@ -383,6 +393,11 @@ namespace FoodDelivery.Migrations
                     b.Navigation("Address");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Entities.Models.MenuItem", b =>
+                {
+                    b.Navigation("Orders");
                 });
 #pragma warning restore 612, 618
         }

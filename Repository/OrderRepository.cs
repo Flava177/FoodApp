@@ -26,9 +26,15 @@ namespace Repository
 
 
         //Place an order
-        public void CreateOrderForMenu(Guid restaurantId, string userId, int orderStatusId, Guid dispatchDriverId, Order order)
+        public void CreateOrder(Guid restaurantId, Guid menuItemId, int userId, int orderStatusId, Guid dispatchDriver, Order order)
         {
-            throw new NotImplementedException();
+            order.RestaurantId = restaurantId;
+            order.MenuItemId = menuItemId;
+            order.UserId = userId;
+            order.OrderStatusId = orderStatusId;
+            order.DispatchDriverId = dispatchDriver;
+
+            Create(order);
         }
     }
 }

@@ -46,23 +46,12 @@ namespace Service
 
         public DispatchDriverDto CreateDriver(DispatchDriverForCreationDto dispatchDriver)
         {
-            var dispatchDriverEntity = new DispatchDriver
-            {
-                Id = Guid.NewGuid(),
-                FullName = dispatchDriver.FullName,
-                PhoneNumber = dispatchDriver.PhoneNumber
-            };
+            var dispatchDriverEntity = _mapper.Map<DispatchDriver>(dispatchDriver);
 
             _repository.DispatchDriver.CreateDriver(dispatchDriverEntity);
             _repository.Save();
 
-            var dispatchDriverDto = new DispatchDriverDto(
-
-                Id:dispatchDriverEntity.Id,
-                Fullname: dispatchDriverEntity.FullName,
-                PhoneNumber: dispatchDriverEntity.PhoneNumber
-
-                );
+            var dispatchDriverDto = _mapper.Map<DispatchDriverDto>(dispatchDriverEntity) ;
             return dispatchDriverDto;
         }
     }

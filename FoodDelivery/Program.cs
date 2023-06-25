@@ -1,6 +1,7 @@
 using Contracts;
 using FoodDelivery.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Mvc;
 using NLog;
 
 namespace FoodDelivery
@@ -22,6 +23,8 @@ namespace FoodDelivery
             builder.Services.ConfigureServiceManager();
             builder.Services.ConfigureSqlContext(builder.Configuration);
             builder.Services.AddAutoMapper(typeof(Program));
+
+            builder.Services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();
