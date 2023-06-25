@@ -14,7 +14,7 @@ namespace Entities.Models
         public Guid Id { get; set; }
 
         [MaxLength(55, ErrorMessage = "Maximum length for Street is 55 characters.")]
-        public string? Street { get; set; }
+        public string Street { get; set; }
 
         [Required(ErrorMessage = "Area is a required field.")]
         [MaxLength(55, ErrorMessage = "Maximum length for the Area is 55 characters.")]

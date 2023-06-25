@@ -11,10 +11,9 @@ namespace Entities.Models
     public class OrderStatus
     {
         [Column("OrderStatusId")]
-        public Guid Id { get; set; }
+        public int Id { get; set; }
 
-        [Required(ErrorMessage = "Status value is a required field.")]
-        [MaxLength(55, ErrorMessage = "Maximum length for Status value is 55 characters.")]
+        [MaxLength(30, ErrorMessage = "Maximum length for Status value is 30 characters.")]
         public string StatusValue { get; set; }
     }
 }

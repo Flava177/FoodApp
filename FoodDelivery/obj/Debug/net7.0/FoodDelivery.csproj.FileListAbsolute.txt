@@ -38,3 +38,5 @@ C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\LoggerSe
 C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\LoggerService.pdb
 C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\Contracts.pdb
 C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\nlog.config
+C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\Entities.dll
+C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\Entities.pdb

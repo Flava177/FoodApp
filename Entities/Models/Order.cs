@@ -27,27 +27,20 @@ namespace Entities.Models
         public int? RestaurantRating { get; set; }
 
         [ForeignKey(nameof(User))]
-        public Guid UserId { get; set; }
+        public int UserId { get; set; }
         public User? User { get; set; }
 
         [ForeignKey(nameof(Restaurant))]
         public Guid RestaurantId { get; set; }
         public Restaurant? Restaurant { get; set; }
 
-        [ForeignKey(nameof(UserAddress))]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public Guid UserAddressId { get; set; }
-        public UserAddress? UserAddress { get; set; }
-
-
-        //public IEnumerable<UserAddress> UserAddresses { get; set; }
-
         [ForeignKey(nameof(OrderStatus))]
-        public Guid OrderStatusId { get; set; }
+        public int OrderStatusId { get; set; }
         public OrderStatus? OrderStatus { get; set; }
 
         [ForeignKey(nameof(DispatchDriver))]
         public Guid DispatchDriverId { get; set; }
         public DispatchDriver? DispatchDriver { get; set; }
+
     }
 }
