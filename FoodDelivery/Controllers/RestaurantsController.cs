@@ -32,7 +32,7 @@ namespace FoodDelivery.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin")]
+        //[Authorize(Roles = "Admin")]
         public IActionResult CreateRestaurant([FromBody] RestaurantForCreationDto restaurant)
         { 
             if (restaurant is null)

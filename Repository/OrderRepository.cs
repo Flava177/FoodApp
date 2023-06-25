@@ -12,25 +12,23 @@ namespace Repository
     {
         public OrderRepository(RepositoryContext repositoryContext) : base(repositoryContext) { }
 
-        public void CreateOrderForMenu(Guid restaurantId, string userId, int orderStatusId, Guid dispatchDriverId, Order order)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Order> GetAllOrders(bool trackChanges) =>
+        
+        //Get all Orders
+        public IEnumerable<Order> GetAllOrders(Guid restaurantId, bool trackChanges) =>
             FindAll(trackChanges)
                .OrderBy(c => c.OrderDate)
                .ToList();
 
-        public Order GetOrder(Guid orderId, bool trackChanges)
+        //Get a single order
+        public Order GetOrder(Guid restaurantId, Guid id, bool trackChanges) =>
+            FindByCondition(e => e.RestaurantId.Equals(restaurantId) && e.Id.Equals(id), trackChanges)
+            .SingleOrDefault();
+
+
+        //Place an order
+        public void CreateOrderForMenu(Guid restaurantId, string userId, int orderStatusId, Guid dispatchDriverId, Order order)
         {
-            var order = FindByCondition(c => c.Id.Equals(orderId), trackChanges)
-                .SingleOrDefault();
-
-            return order == null ? throw new Exception("order not found.") : order;
+            throw new NotImplementedException();
         }
-
-
-       
     }
 }

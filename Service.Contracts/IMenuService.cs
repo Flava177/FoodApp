@@ -9,8 +9,8 @@ namespace Service.Contracts
 {
     public interface IMenuService
     {
-        IEnumerable<MenuDto> GetAllMenu(Guid restaurantId, bool trackChanges);
-        MenuDto GetMenu(Guid restaurantId, Guid id, bool trackChanges);
-        MenuDto MenuItemForCreation(Guid restaurantId, MenuItemForCreationDto menuItemForCreation, bool trackChanges);
+        IEnumerable<MenuItemDto> GetAllMenu(Guid restaurantId, bool trackChanges);
+        MenuItemDto GetMenu(Guid restaurantId, Guid id, bool trackChanges);
+        MenuItemDto MenuItemForCreation(Guid restaurantId, MenuItemForCreationDto menuItemForCreation, bool trackChanges);
     }
 }

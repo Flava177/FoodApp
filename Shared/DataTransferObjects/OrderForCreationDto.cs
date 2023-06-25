@@ -6,5 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shared.DataTransferObjects
 {
-    public record MenuDto(Guid Id, string Name, string Description, decimal Price);
+    internal class OrderForCreationDto
+    {
+    }
 }

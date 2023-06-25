@@ -6,7 +6,7 @@ using Shared.DataTransferObjects;
 
 namespace FoodDelivery.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [Route("api/restaurants/{restaurantId}/menus/{menuId}/orders")]
     //[Route("api/[Controller]/action")]
     [ApiController]
@@ -16,20 +16,21 @@ namespace FoodDelivery.Controllers
         private readonly IServiceManager _service;
         public OrdersController(IServiceManager service) => _service = service;
 
+
+        //Get All Orders in a Restaurant
         [HttpGet]
-        public IActionResult GetOrders()
+        public IActionResult GetOrders(Guid restaurantId)
         {
-
-            var orders = _service.OrderService.GetAllOrders(trackChanges: false);
+            var orders = _service.OrderService.GetAllOrders(restaurantId, trackChanges: false);
             return Ok(orders);
-
         }
 
 
+        //Get An Order in a Restaurant
         [HttpGet("{id:guid}", Name = "OrderById")]
-        public IActionResult GetOrder(Guid id)
+        public IActionResult GetOrder(Guid restaurantId, Guid id)
         {
-            var order = _service.OrderService.GetOrder(id, trackChanges: false);
+            var order = _service.OrderService.GetOrder(restaurantId, id, trackChanges: false);
             return Ok(order);
         }
 

@@ -25,22 +25,18 @@ namespace Service
             _mapper = mapper;
         }
 
-        public IEnumerable<MenuDto> GetAllMenu(Guid restaurantId, bool trackChanges)
+        public IEnumerable<MenuItemDto> GetAllMenu(Guid restaurantId, bool trackChanges)
         {
-            var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges);
-            if (restaurant is null) 
-                throw new RestaurantNotFoundException(restaurantId);
-
-
+            var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges) ?? throw new RestaurantNotFoundException(restaurantId);
             var menuFromDb = _repository.Menu.GetAllMenus(restaurantId, trackChanges);
 
-            var menuDto = _mapper.Map<IEnumerable<MenuDto>>(menuFromDb);
+            var menuDto = _mapper.Map<IEnumerable<MenuItemDto>>(menuFromDb);
 
             return menuDto;
 
         }
     
-        public MenuDto GetMenu(Guid restaurantId, Guid id, bool trackChanges)
+        public MenuItemDto GetMenu(Guid restaurantId, Guid id, bool trackChanges)
         {
             var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges);
             if (restaurant is null) throw new RestaurantNotFoundException(restaurantId);
@@ -48,7 +44,7 @@ namespace Service
             var menuDb = _repository.Menu.GetMenu(restaurantId, id, trackChanges);
             if  (menuDb is null) throw new MenuNotFoundException(id);
 
-            var menu = new MenuDto(
+            var menu = new MenuItemDto(
                 Id: menuDb.Id,
                 Name: menuDb.Name,
                 Description: menuDb.Description,
@@ -58,7 +54,7 @@ namespace Service
         }
 
 
-        public MenuDto MenuItemForCreation(Guid restaurantId, MenuItemForCreationDto menuItemForCreation, bool trackChanges)
+        public MenuItemDto MenuItemForCreation(Guid restaurantId, MenuItemForCreationDto menuItemForCreation, bool trackChanges)
         {
             var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges) ?? throw new RestaurantNotFoundException(restaurantId);
             var menuEntity = new MenuItem
@@ -73,7 +69,7 @@ namespace Service
             _repository.Menu.CreateMenuItem(restaurantId, menuEntity);
             _repository.Save();
 
-            var menuToReturn = new MenuDto(
+            var menuToReturn = new MenuItemDto(
                menuEntity.Id,
                menuEntity.Name,
                menuEntity.Description,

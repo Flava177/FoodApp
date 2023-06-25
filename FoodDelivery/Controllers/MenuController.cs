@@ -17,16 +17,17 @@ namespace FoodDelivery.Controllers
         public MenusController(IServiceManager service) => _service = service;
 
 
+        //Get All Menus
         [HttpGet]
         public IActionResult GetMenus(Guid restaurantId)
         {
 
             var menus = _service.MenuService.GetAllMenu(restaurantId, trackChanges: false);
             return Ok(menus);
-
         }
 
 
+        //Get A Menu
         [HttpGet("{id:guid}", Name = "MenuById")]
         public IActionResult GetMenu(Guid restaurantId, Guid id)
         {
@@ -34,6 +35,8 @@ namespace FoodDelivery.Controllers
             return Ok(menu);
         }
 
+
+        //Add a MenuItem
         //[Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult CreateMenuForRestaurant(Guid restaurantId, [FromBody] MenuItemForCreationDto menuItem)

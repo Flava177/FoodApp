@@ -27,10 +27,11 @@ namespace Service
             _mapper = mapper;
         }
 
-        public IEnumerable<OrderDto> GetAllOrders(bool trackChanges)
+        public IEnumerable<OrderDto> GetAllOrders(Guid restaurantId, bool trackChanges)
         {
+            var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges) ?? throw new RestaurantNotFoundException(restaurantId);
 
-            var orders = _repository.Order.GetAllOrders(trackChanges);
+            var orders = _repository.Order.GetAllOrders(restaurantId, trackChanges);
 
             var ordersDto = _mapper.Map<IEnumerable<OrderDto>>(orders);
 
@@ -38,17 +39,15 @@ namespace Service
 
         }
 
-        public OrderDto GetOrder(Guid id, bool trackChanges)
+        public OrderDto GetOrder(Guid restaurantId, Guid id, bool trackChanges)
         {
-            var order = _repository.Order.GetOrder(id, trackChanges);
+            var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges) ?? throw new RestaurantNotFoundException(restaurantId);
 
-            var orderDto = new OrderDto(
-                id,
-                order.OrderDate,
-                order.RequestedDeliveryTime,
-                order.TotalAmount,
-                order.RestaurantRating.HasValue ? (int)order.RestaurantRating : 0
-                );
+            var order = _repository.Order.GetOrder(restaurantId, id, trackChanges);
+            if (order is null)
+                throw new OrderNotFoundException(id);
+
+            var orderDto = _mapper.Map<OrderDto>(order);
 
             return orderDto;
         }
