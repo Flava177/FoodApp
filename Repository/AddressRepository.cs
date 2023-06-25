@@ -18,13 +18,12 @@ namespace Repository
         .OrderBy(c => c.Street)
         .ToList();
 
-        public Address GetAddress(Guid addressId, bool trackChanges)
-        {
-            var address = FindByCondition(c => c.Id.Equals(addressId), trackChanges)
-                .SingleOrDefault() ?? throw new Exception("Address not found.");
-            return address;
-        }
+        public Address GetAddress(Guid addressId, bool trackChanges) =>
 
+         FindByCondition(c => c.Id.Equals(addressId), trackChanges)
+                .SingleOrDefault() ?? throw new Exception("Address not found.");
+
+        
         public void CreateAddress(Address address) => Create(address);
 
 

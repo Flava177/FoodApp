@@ -17,13 +17,11 @@ namespace Repository
                 .OrderBy(c => c.FirstName)
                .ToList();
 
-        public User GetUser(string userId, bool trackChanges)
-        {
-            var user = FindByCondition(c => c.FirstName.Equals(userId), trackChanges)
-                .SingleOrDefault();
+        public User GetUser(string userId, bool trackChanges) =>
 
-            return user == null ? throw new Exception("restaurant not found.") : user;
-        }
+            FindByCondition(c => c.FirstName.Equals(userId), trackChanges)
+                .SingleOrDefault() ?? throw new Exception("Status not found.");
+
     }
 
 

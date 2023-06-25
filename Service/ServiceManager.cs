@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Service.Contracts;
+using Service.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +24,7 @@ namespace Service
         private readonly Lazy<IRestaurantService> _restaurantService ;
         private readonly Lazy<IUserService> _userService  ;
         private readonly Lazy<IAuthenticationService> _authenticationService;
+        private readonly Lazy<IStatusService> _statusService;
         public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper,/* UserManager<User> userManager, RoleManager<IdentityRole> roleManager,*/ IConfiguration configuration/*, IHttpContextAccessor httpContextAccessor, HttpClient httpClient*/)
         {
             _addressService = new Lazy<IAddressService>(() => new AddressService(repositoryManager, logger, mapper));
@@ -31,6 +33,7 @@ namespace Service
             _orderService = new Lazy<IOrderService>(() => new OrderService(repositoryManager, logger, mapper));
             _restaurantService = new Lazy<IRestaurantService>(() => new RestaurantService(repositoryManager, logger, mapper));
             _userService = new Lazy<IUserService>(() => new UserService(repositoryManager, logger, mapper));
+            _statusService = new Lazy<IStatusService>(() => new StatusService(repositoryManager, logger, mapper));
             _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(logger,/*userManager, roleManager, */configuration, mapper/*, httpContextAccessor, httpClient*/));
         }
         public IAddressService AddressService  => _addressService.Value;
@@ -40,5 +43,6 @@ namespace Service
         public IRestaurantService RestaurantService  => _restaurantService.Value;
         public IUserService UserService  => _userService.Value;
         public IAuthenticationService AuthenticationService => _authenticationService.Value;
+        public IStatusService StatusService => _statusService.Value;
     }
 }

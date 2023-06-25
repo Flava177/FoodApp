@@ -9,8 +9,8 @@ namespace Service.Contracts
 {
     public interface IOrderService
     {
-        //IEnumerable<OrderDto> GetAllOrders(bool trackChanges);
-        //OrderDto GetOrder(Guid orderId, bool trackChanges);
+        IEnumerable<OrderDto> GetAllOrders(bool trackChanges);
+        OrderDto GetOrder(Guid orderId, bool trackChanges);
         //OrderDto CreateOrderForMenu(OrderForCreationDto orderForCreationDto, bool trackChanges);
     }
 }

@@ -17,12 +17,12 @@ namespace Repository
                .OrderBy(c => c.FullName)
                .ToList();
 
-        public DispatchDriver GetDriver(Guid dispatchDriverId, bool trackChanges)
-        {
-            var driver = FindByCondition(c => c.Id.Equals(dispatchDriverId), trackChanges)
+        public DispatchDriver GetDriver(Guid dispatchDriverId, bool trackChanges) =>
+
+             FindByCondition(c => c.Id.Equals(dispatchDriverId), trackChanges)
                 .SingleOrDefault() ?? throw new Exception("driver not found.");
-            return driver;
-        }
+         
+        
 
         public void CreateDriver(DispatchDriver dispatchDriver) => Create(dispatchDriver);
     }

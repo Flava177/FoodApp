@@ -17,6 +17,7 @@ namespace FoodDelivery.Controllers
         [HttpGet]
         public IActionResult GetAddresses()
         {
+
             var addresses = _service.AddressService.GetAllAddresses(trackChanges: false);
             return Ok(addresses);
         }

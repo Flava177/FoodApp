@@ -1,3 +1,4 @@
+using Contracts;
 using FoodDelivery.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using NLog;
@@ -14,6 +15,7 @@ namespace FoodDelivery
 
             builder.Services.ConfigureCors();
             builder.Services.ConfigureLoggerService();
+
             // Add services to the container.
 
             builder.Services.ConfigureRepositoryManager();
@@ -22,18 +24,29 @@ namespace FoodDelivery
             builder.Services.AddAutoMapper(typeof(Program));
 
             builder.Services.AddControllers();
-            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
 
             var app = builder.Build();
 
-            if (app.Environment.IsDevelopment()) 
-                app.UseDeveloperExceptionPage(); 
+            //extract the ILoggerManager service inside the logger variable
+            var logger = app.Services.GetRequiredService<ILoggerManager>();
+            app.ConfigureExceptionHandler(logger);
+
+            if (app.Environment.IsProduction())
+                app.UseHsts();
+
+            //if (app.Environment.IsDevelopment()) 
+            //    app.UseDeveloperExceptionPage(); 
             else 
                 app.UseHsts();
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
+            {
+                app.UseSwagger();
+                app.UseSwaggerUI();
+            }
+            if (app.Environment.IsProduction())
             {
                 app.UseSwagger();
                 app.UseSwaggerUI();

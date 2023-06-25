@@ -9,10 +9,13 @@ namespace FoodDelivery
     {
         public MappingProfile()
         {
-            CreateMap<Address, AddressDto>()
-                .ForMember(c => c.City,
-                opt =>
-                opt.MapFrom(x => x.City));
+            CreateMap<Address, AddressDto>();
+            CreateMap<Restaurant, RestaurantDto>();
+            CreateMap<DispatchDriver, DispatchDriverDto>();
+            CreateMap<DispatchDriver, DispatchDriverDto>();
+            CreateMap<MenuItem, MenuDto>();
+            CreateMap<User, UserDto>();
+            CreateMap<Order, OrderDto>();
         }
     }
 }

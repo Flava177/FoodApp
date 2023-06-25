@@ -28,9 +28,7 @@ namespace Service
 
             var users = _repository.User.GetAllUsers(trackChanges);
 
-            var usersDto = users.Select(c =>
-
-            new UserDto(c.FirstName, c.FirstName, c.FirstName, c.FirstName)).ToList();
+            var usersDto = _mapper.Map< IEnumerable<UserDto>>(users);
 
             return usersDto;
 
@@ -38,13 +36,8 @@ namespace Service
 
         public UserDto GetUser(string id, bool trackChanges)
         {
-            var user = _repository.User.GetUser(id, trackChanges);
-            var userDto = new UserDto(
-                id,
-                user.FirstName,
-                user.FirstName,
-                user.FirstName
-                );
+            var user = _repository.User.GetUser(id, trackChanges) ?? throw new UserNotFoundException(id);
+            var userDto = _mapper.Map<UserDto>(user);
 
             return userDto;
         }

@@ -27,36 +27,31 @@ namespace Service
             _mapper = mapper;
         }
 
-        //public IEnumerable<OrderDto> GetAllOrders(bool trackChanges)
-        //{
+        public IEnumerable<OrderDto> GetAllOrders(bool trackChanges)
+        {
 
-        //    var orders = _repository.Order.GetAllOrders(trackChanges);
+            var orders = _repository.Order.GetAllOrders(trackChanges);
 
-        //    var ordersDto = orders.Select(c =>
-        //    {
-        //        int? restaurantRating = c.RestaurantRating; 
-        //        int rating = restaurantRating.HasValue ? (int)restaurantRating : 0;
-        //        return new OrderDto(c.Id, c.OrderDate, c.RequestedDeliveryTime, c.TotalAmount, rating);
-        //    }).ToList();
+            var ordersDto = _mapper.Map<IEnumerable<OrderDto>>(orders);
 
-        //    return ordersDto;
+            return ordersDto;
 
-        //}
+        }
 
-        //public OrderDto GetOrder(Guid id, bool trackChanges)
-        //{
-        //    var order = _repository.Order.GetOrder(id, trackChanges);
+        public OrderDto GetOrder(Guid id, bool trackChanges)
+        {
+            var order = _repository.Order.GetOrder(id, trackChanges);
 
-        //    var orderDto = new OrderDto(
-        //        id,
-        //        order.OrderDate,
-        //        order.RequestedDeliveryTime,
-        //        order.TotalAmount,
-        //        order.RestaurantRating.HasValue ? (int)order.RestaurantRating : 0
-        //        );
+            var orderDto = new OrderDto(
+                id,
+                order.OrderDate,
+                order.RequestedDeliveryTime,
+                order.TotalAmount,
+                order.RestaurantRating.HasValue ? (int)order.RestaurantRating : 0
+                );
 
-        //    return orderDto;
-        //}
+            return orderDto;
+        }
 
         //public OrderDto CreateOrderForMenu(Guid restaurantId, string userId, int orderStatusId, Guid dispatchDriverId, OrderForCreationDto orderForCreationDto, bool trackChanges)
         //{
@@ -73,7 +68,7 @@ namespace Service
         //       RequestedDeliveryTime = orderForCreationDto.RequestedDeliveryTime,
         //       TotalAmount = orderForCreationDto.TotalAmount,
         //       RestaurantRating = orderForCreationDto.RestaurantRating
-               
+
         //   };
 
         //    _repository.Order.CreateOrderForMenu(restaurantId, userId, orderStatusId, dispatchDriverId, orderEntity);

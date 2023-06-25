@@ -30,9 +30,7 @@ namespace Service
         {
             var restaurants = _repository.Restaurant.GetAllRestaurants(trackChanges);
 
-            var restaurantsDto = restaurants.Select(c =>
-
-            new RestaurantDto(c.Id, c.Name, c.Email, c.PhoneNumber, c.StartTime, c.EndTime, c.AddressId)).ToList();
+            var restaurantsDto = _mapper.Map<IEnumerable<RestaurantDto>>(restaurants);
 
             return restaurantsDto;
 
@@ -41,16 +39,8 @@ namespace Service
         public RestaurantDto GetRestaurant(Guid id, bool trackChanges)
         {
             var restaurant = _repository.Restaurant.GetRestaurant(id, trackChanges) ?? throw new RestaurantNotFoundException(id);
-            var restaurantDto = new RestaurantDto(
-                id,
-                restaurant.Name,
-                restaurant.Email,
-                restaurant.PhoneNumber,
-                restaurant.StartTime,
-                restaurant.EndTime,
-                restaurant.AddressId
 
-                );
+            var restaurantDto = _mapper.Map<RestaurantDto>(restaurant);
 
             return restaurantDto;
         }

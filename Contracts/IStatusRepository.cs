@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Contracts
 {
-    public interface IStatus
+    public interface IStatusRepository
     {
         IEnumerable<OrderStatus> GetAllStatuses(bool trackChanges);
         OrderStatus GetStatus(int orderStatusId, bool trackChanges);

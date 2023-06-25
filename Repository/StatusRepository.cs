@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    internal sealed class StatusRepository : RepositoryBase<OrderStatus>, IStatus
+    internal sealed class StatusRepository : RepositoryBase<OrderStatus>, IStatusRepository
     {
         public StatusRepository(RepositoryContext repositoryContext) : base(repositoryContext) { }
 
@@ -18,11 +18,9 @@ namespace Repository
        .ToList();
 
 
-        public OrderStatus GetStatus(int statusId, bool trackChanges)
-        {
-            var status = FindByCondition(c => c.Id.Equals(statusId), trackChanges)
+        public OrderStatus GetStatus(int statusId, bool trackChanges) =>
+
+             FindByCondition(c => c.Id.Equals(statusId), trackChanges)
                 .SingleOrDefault() ?? throw new Exception("Status not found.");
-            return status;
-        }
     }
 }

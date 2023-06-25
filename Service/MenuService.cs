@@ -34,9 +34,7 @@ namespace Service
 
             var menuFromDb = _repository.Menu.GetAllMenus(restaurantId, trackChanges);
 
-            var menuDto = menuFromDb.Select(c =>
-
-            new MenuDto(c.Id, c.Name, c.Description, c.Price)).ToList();
+            var menuDto = _mapper.Map<IEnumerable<MenuDto>>(menuFromDb);
 
             return menuDto;
 

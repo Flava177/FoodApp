@@ -14,7 +14,7 @@ namespace Contracts
         IUserRepository User { get; }
         IAddressRepository Address { get; }
         IDispatchDriverRepository DispatchDriver  { get; }
-        IStatus StatusValue  { get; }
+        IStatusRepository StatusValue  { get; }
 
         void Save();
     }

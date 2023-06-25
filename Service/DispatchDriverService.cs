@@ -28,9 +28,7 @@ namespace Service
 
             var drivers = _repository.DispatchDriver.GetAllDrivers(trackChanges);
 
-            var driversDto = drivers.Select(c =>
-
-            new DispatchDriverDto(c.Id, c.FullName, c.PhoneNumber)).ToList();
+            var driversDto = _mapper.Map<IEnumerable<DispatchDriverDto>>(drivers);
 
             return driversDto;
 
@@ -40,11 +38,7 @@ namespace Service
         {
             var driver = _repository.DispatchDriver.GetDriver(id, trackChanges);
 
-            var driverDto = new DispatchDriverDto(
-            id,
-            driver.FullName,
-            driver.PhoneNumber
-            );
+            var driverDto = _mapper.Map<DispatchDriverDto>(driver);
 
             return driverDto;
         }
