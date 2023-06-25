@@ -15,12 +15,8 @@ namespace Repository
 
         public IEnumerable<Address> GetAllAddresses(bool trackChanges) =>
             FindAll(trackChanges)
-        .OrderBy(c => c.Area)
+        .OrderBy(c => c.Street)
         .ToList();
-
-        //public Address GetAddress(Guid addressId, bool trackChanges) => 
-        //    FindByCondition(c => c.Id.Equals(addressId), trackChanges)
-        //    .SingleOrDefault();
 
         public Address GetAddress(Guid addressId, bool trackChanges)
         {
@@ -28,7 +24,6 @@ namespace Repository
                 .SingleOrDefault() ?? throw new Exception("Address not found.");
             return address;
         }
-
 
         public void CreateAddress(Address address) => Create(address);
 

@@ -1,4 +1,5 @@
-﻿using Contracts;
+﻿using AutoMapper;
+using Contracts;
 using Entities.Models;
 using Service.Contracts;
 using Shared.DataTransferObjects;
@@ -14,19 +15,31 @@ namespace Service
     {
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
-        public AddressService(IRepositoryManager repository, ILoggerManager logger)
+        private readonly IMapper _mapper;
+        public AddressService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {
             _repository = repository;
             _logger = logger;
+            _mapper = mapper;
         }
+        //public IEnumerable<AddressDto> GetAllAddresses(bool trackChanges)
+        //{
+
+        //    var addresses = _repository.Address.GetAllAddresses(trackChanges);
+
+        //    var addressesDto = addresses.Select(c =>
+
+        //    new AddressDto(c.Id, c.Street, c.Area, c.City)).ToList();
+
+        //    return addressesDto;
+
+        //}
         public IEnumerable<AddressDto> GetAllAddresses(bool trackChanges)
         {
 
             var addresses = _repository.Address.GetAllAddresses(trackChanges);
 
-            var addressesDto = addresses.Select(c =>
-
-            new AddressDto(c.Id, c.Street, c.Area, c.City)).ToList();
+            var addressesDto = _mapper.Map<IEnumerable<AddressDto>>(addresses);
 
             return addressesDto;
 

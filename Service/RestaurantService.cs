@@ -1,4 +1,5 @@
-﻿using Contracts;
+﻿using AutoMapper;
+using Contracts;
 using Entities.Exceptions;
 using Entities.Models;
 using Service.Contracts;
@@ -17,10 +18,12 @@ namespace Service
     {
         private readonly IRepositoryManager _repository;
         private readonly ILoggerManager _logger;
-        public RestaurantService(IRepositoryManager repository, ILoggerManager logger)
+        private readonly IMapper _mapper;
+        public RestaurantService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {
             _repository = repository;
             _logger = logger;
+            _mapper = mapper;
         }
 
         public IEnumerable<RestaurantDto> GetAllRestaurants(bool trackChanges)

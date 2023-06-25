@@ -24,7 +24,7 @@ namespace Repository
             _restaurantRepository = new Lazy<IRestaurantRepository>(() => new RestaurantRepository(repositoryContext));
             _menuRepository = new Lazy<IMenuRepository>(() => new MenuRepository(repositoryContext));
             _orderRepository = new Lazy<IOrderRepository>(() => new OrderRepository(repositoryContext));
-            //_userRepository = new Lazy<IUserRepository>(() => new UserRepository(repositoryContext));
+            _userRepository = new Lazy<IUserRepository>(() => new UserRepository(repositoryContext));
             _addressRepository = new Lazy<IAddressRepository>(() => new AddressRepository(repositoryContext));
             _dispatchDriverRepository = new Lazy<IDispatchDriverRepository>(() => new DispatchDriverRepository(repositoryContext));
             _status = new Lazy<IStatus>(() => new StatusRepository(repositoryContext));

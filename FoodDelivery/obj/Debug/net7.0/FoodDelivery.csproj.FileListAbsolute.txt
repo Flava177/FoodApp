@@ -90,3 +90,13 @@ C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\runtimes
 C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\runtimes\win\lib\netcoreapp3.0\System.Windows.Extensions.dll
 C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\Repository.dll
 C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\Repository.pdb
+C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\Newtonsoft.Json.dll
+C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\Service.Contracts.dll
+C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\Service.dll
+C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\Shared.dll
+C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\Service.pdb
+C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\Service.Contracts.pdb
+C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\Shared.pdb
+C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\obj\Debug\net7.0\FoodDelivery.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\AutoMapper.dll
+C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

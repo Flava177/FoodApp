@@ -14,7 +14,6 @@ namespace Service.Contracts
         IUserService UserService { get; }
         IAddressService AddressService { get; }
         IDispatchDriverService DispatchDriverService { get; }
-        IAuthenticationService AuthenticationService { get; }
 
     }
 }
