@@ -49,7 +49,7 @@ namespace Service
             return orderDto;
         }
 
-        public OrderDto OrderForCreation(Guid restaurantId, Guid menuItemId, int userId, int orderStatusId, Guid dispatchDriver, OrderForCreationDto orderForCreation, bool trackChanges)
+        public OrderDto OrderForCreation(Guid restaurantId, Guid menuItemId, string userId, int orderStatusId, Guid dispatchDriver, OrderForCreationDto orderForCreation, bool trackChanges)
         {
             var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges) ?? throw new RestaurantNotFoundException(restaurantId);
 

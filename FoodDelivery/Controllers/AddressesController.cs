@@ -6,7 +6,7 @@ using Shared.DataTransferObjects;
 
 namespace FoodDelivery.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AddressesController : ControllerBase

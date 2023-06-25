@@ -36,7 +36,7 @@ namespace FoodDelivery.Controllers
 
 
         [HttpPost]
-        public IActionResult CreateOrderForMenuItem(Guid restaurantId, Guid menuItemId, int userId, int orderStatusId, Guid dispatchDriver, [FromBody] OrderForCreationDto order)
+        public IActionResult CreateOrderForMenuItem(Guid restaurantId, Guid menuItemId, string userId, int orderStatusId, Guid dispatchDriver, [FromBody] OrderForCreationDto order)
         {
             if (order is null)
                 return BadRequest("OrderForCreationDto object is null");

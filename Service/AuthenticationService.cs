@@ -1,16 +1,15 @@
-﻿using AutoMapper;
-using Contracts;
+﻿using Contracts;
 using Entities.Models;
-//using GeoCoordinatePortable;
+using GeoCoordinatePortable;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
-//using Microsoft.IdentityModel.Tokens;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Linq;
 using Service.Contracts;
 using Shared.DataTransferObjects;
-//using System.IdentityModel.Tokens.Jwt;
+using System.IdentityModel.Tokens.Jwt;
 using System.Net.Http;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -27,20 +26,18 @@ namespace Service
         private readonly RoleManager<IdentityRole> _roleManager;
         private User? _user;
         private readonly IHttpContextAccessor _httpContextAccessor;
-        //private readonly GeoCoordinate _geoCoordinate;
+        private readonly GeoCoordinate _geoCoordinate;
         private readonly HttpClient _httpClient;
-        private readonly IMapper _mapper;
 
-        public AuthenticationService(ILoggerManager logger,/*, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, */IConfiguration configuration, IMapper mapper/*, IHttpContextAccessor httpContextAccessor, HttpClient httpClient*/)
+        public AuthenticationService(ILoggerManager logger, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, HttpClient httpClient)
         {
             _logger = logger;
-            //_userManager = userManager;
+            _userManager = userManager;
             _configuration = configuration;
-            _mapper = mapper;
-            //_roleManager = roleManager;
-            //_httpContextAccessor = httpContextAccessor;
-            //_geoCoordinate = new GeoCoordinate();
-            //_httpClient = httpClient;
+            _roleManager = roleManager;
+            _httpContextAccessor = httpContextAccessor;
+            _geoCoordinate = new GeoCoordinate();
+            _httpClient = httpClient;
 
         }
 
@@ -83,13 +80,13 @@ namespace Service
             {
                 FirstName = userForRegistration.FirstName,
                 LastName = userForRegistration.LastName,
-                //UserName = userForRegistration.UserName,
-                //Email = userForRegistration.Email,
+                UserName = userForRegistration.UserName,
+                Email = userForRegistration.Email,
                 Latitude = double.Parse(latitude),
-                Longitude = double.Parse(longitude)
-                //PasswordHash = userForRegistration.Password,
-                //PhoneNumber = userForRegistration.PhoneNumber,
-                //SecurityStamp = Guid.NewGuid().ToString()
+                Longitude = double.Parse(longitude),
+                PasswordHash = userForRegistration.Password,
+                PhoneNumber = userForRegistration.PhoneNumber,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             var result = await _userManager.CreateAsync(user, userForRegistration.Password);
@@ -120,13 +117,13 @@ namespace Service
             {
                 FirstName = userForRegistration.FirstName,
                 LastName = userForRegistration.LastName,
-                //UserName = userForRegistration.UserName,
-                //Email = userForRegistration.Email,
+                UserName = userForRegistration.UserName,
+                Email = userForRegistration.Email,
                 Latitude = double.Parse(latitude),
-                Longitude = double.Parse(longitude)
-                //PasswordHash = userForRegistration.Password,
-                //PhoneNumber = userForRegistration.PhoneNumber,
-                //SecurityStamp = Guid.NewGuid().ToString()
+                Longitude = double.Parse(longitude),
+                PasswordHash = userForRegistration.Password,
+                PhoneNumber = userForRegistration.PhoneNumber,
+                SecurityStamp = Guid.NewGuid().ToString()
             };
 
             var result = await _userManager.CreateAsync(user, userForRegistration.Password);
@@ -155,52 +152,52 @@ namespace Service
 
 
         //create token
-        //public async Task<string> CreateToken()
-        //{
-        //    var signingCredentials = GetSigningCredentials();
-        //    var claims = await GetClaims();
-        //    var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
-        //    return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
-        //}
+        public async Task<string> CreateToken()
+        {
+            var signingCredentials = GetSigningCredentials();
+            var claims = await GetClaims();
+            var tokenOptions = GenerateTokenOptions(signingCredentials, claims);
+            return new JwtSecurityTokenHandler().WriteToken(tokenOptions);
+        }
 
 
         //return the secret key
-        //private SigningCredentials GetSigningCredentials()
-        //{
-        //    var key = Encoding.UTF8.GetBytes(_configuration["JwtSettings:key"]);
-        //    var secret = new SymmetricSecurityKey(key);
-        //    return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
-        //}
+        private SigningCredentials GetSigningCredentials()
+        {
+            var key = Encoding.UTF8.GetBytes(_configuration["JwtSettings:key"]);
+            var secret = new SymmetricSecurityKey(key);
+            return new SigningCredentials(secret, SecurityAlgorithms.HmacSha256);
+        }
 
 
         //create list of claims with the user name
-        //private async Task<List<Claim>> GetClaims() 
-        //{
-        //    var claims = new List<Claim> 
-        //    { 
-        //        new Claim(ClaimTypes.Name, _user.UserName)
-        //    }; 
+        private async Task<List<Claim>> GetClaims()
+        {
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, _user.UserName)
+            };
 
-        //    var roles = await _userManager.GetRolesAsync(_user); 
-        //    foreach (var role in roles)
-        //    {
-        //        claims.Add(new Claim(ClaimTypes.Role, role));
-        //    } 
-        //    return claims; 
-        //}
+            var roles = await _userManager.GetRolesAsync(_user);
+            foreach (var role in roles)
+            {
+                claims.Add(new Claim(ClaimTypes.Role, role));
+            }
+            return claims;
+        }
 
 
         //create an object of the JwtSecurityToken
-        //private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims) 
-        //{
-        //    var jwtSettings = _configuration.GetSection("JwtSettings");
-        //    var tokenOptions = new JwtSecurityToken(issuer: jwtSettings["validIssuer"],
-        //        audience: jwtSettings["validAudience"],
-        //        claims: claims,
-        //        expires: DateTime.Now.AddMinutes(Convert.ToDouble(jwtSettings["expires"])),
-        //        signingCredentials: signingCredentials);
-        //    return tokenOptions;
-        //}
+        private JwtSecurityToken GenerateTokenOptions(SigningCredentials signingCredentials, List<Claim> claims)
+        {
+            var jwtSettings = _configuration.GetSection("JwtSettings");
+            var tokenOptions = new JwtSecurityToken(issuer: jwtSettings["validIssuer"],
+                audience: jwtSettings["validAudience"],
+                claims: claims,
+                expires: DateTime.Now.AddMinutes(Convert.ToDouble(jwtSettings["expires"])),
+                signingCredentials: signingCredentials);
+            return tokenOptions;
+        }
     }
 
 

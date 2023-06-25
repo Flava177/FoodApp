@@ -25,7 +25,7 @@ namespace Service
         private readonly Lazy<IUserService> _userService  ;
         private readonly Lazy<IAuthenticationService> _authenticationService;
         private readonly Lazy<IStatusService> _statusService;
-        public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper,/* UserManager<User> userManager, RoleManager<IdentityRole> roleManager,*/ IConfiguration configuration/*, IHttpContextAccessor httpContextAccessor, HttpClient httpClient*/)
+        public ServiceManager(IRepositoryManager repositoryManager, ILoggerManager logger, IMapper mapper, UserManager<User> userManager, RoleManager<IdentityRole> roleManager, IConfiguration configuration, IHttpContextAccessor httpContextAccessor, HttpClient httpClient)
         {
             _addressService = new Lazy<IAddressService>(() => new AddressService(repositoryManager, logger, mapper));
             _dispatchDriverService = new Lazy<IDispatchDriverService>(() => new DispatchDriverService(repositoryManager, logger, mapper));
@@ -34,7 +34,7 @@ namespace Service
             _restaurantService = new Lazy<IRestaurantService>(() => new RestaurantService(repositoryManager, logger, mapper));
             _userService = new Lazy<IUserService>(() => new UserService(repositoryManager, logger, mapper));
             _statusService = new Lazy<IStatusService>(() => new StatusService(repositoryManager, logger, mapper));
-            _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(logger,/*userManager, roleManager, */configuration, mapper/*, httpContextAccessor, httpClient*/));
+            _authenticationService = new Lazy<IAuthenticationService>(() => new AuthenticationService(logger, userManager, roleManager, configuration, httpContextAccessor, httpClient));
         }
         public IAddressService AddressService  => _addressService.Value;
         public IDispatchDriverService DispatchDriverService  => _dispatchDriverService.Value;

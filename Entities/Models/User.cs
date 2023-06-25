@@ -5,13 +5,12 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 
 namespace Entities.Models
 {
-    public class User
+    public class User : IdentityUser
     {
-        [Key]
-        public int Id { get; set; }
         [Required(ErrorMessage = "FirstName is a required field.")]
         public string FirstName { get; set; }
 

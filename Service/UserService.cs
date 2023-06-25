@@ -34,7 +34,7 @@ namespace Service
 
         }
 
-        public UserDto GetUser(int id, bool trackChanges)
+        public UserDto GetUser(string id, bool trackChanges)
         {
             var user = _repository.User.GetUser(id, trackChanges) ?? throw new UserNotFoundException(id);
             var userDto = _mapper.Map<UserDto>(user);

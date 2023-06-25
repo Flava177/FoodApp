@@ -107,6 +107,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "GeoCoordinate.NetCore": {
+              "target": "Package",
+              "version": "[1.0.0.1, )"
+            },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
               "version": "[7.0.8, )"
@@ -183,6 +187,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.8, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.7, )"
@@ -466,6 +474,9 @@
               "C:\\Users\\Daniel\\source\\repos\\FoodDelivery\\Contracts\\Contracts.csproj": {
                 "projectPath": "C:\\Users\\Daniel\\source\\repos\\FoodDelivery\\Contracts\\Contracts.csproj"
               },
+              "C:\\Users\\Daniel\\source\\repos\\FoodDelivery\\Entities\\Entities.csproj": {
+                "projectPath": "C:\\Users\\Daniel\\source\\repos\\FoodDelivery\\Entities\\Entities.csproj"
+              },
               "C:\\Users\\Daniel\\source\\repos\\FoodDelivery\\Service.Contracts\\Service.Contracts.csproj": {
                 "projectPath": "C:\\Users\\Daniel\\source\\repos\\FoodDelivery\\Service.Contracts\\Service.Contracts.csproj"
               }
@@ -493,6 +504,14 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[6.21.0, )"
+            },
+            "System.Net.Http": {
+              "target": "Package",
+              "version": "[4.3.4, )"
             }
           },
           "imports": [
