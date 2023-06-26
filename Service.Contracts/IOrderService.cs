@@ -13,6 +13,5 @@ namespace Service.Contracts
         OrderDto GetOrder(Guid restaurantId, Guid id, bool trackChanges);
         OrderDto OrderForCreation(Guid restaurantId, Guid menuItemId, string userId, int orderStatusId, Guid dispatchDriver, OrderForCreationDto orderForCreation, bool trackChanges);
 
-
     }
 }

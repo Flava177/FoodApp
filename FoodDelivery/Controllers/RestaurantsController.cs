@@ -6,7 +6,7 @@ using Shared.DataTransferObjects;
 
 namespace FoodDelivery.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class RestaurantsController : ControllerBase
@@ -32,7 +32,7 @@ namespace FoodDelivery.Controllers
         }
 
         [HttpPost]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateRestaurant([FromBody] RestaurantForCreationDto restaurant)
         { 
             if (restaurant is null)

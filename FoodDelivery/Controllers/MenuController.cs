@@ -8,7 +8,7 @@ using Shared.DataTransferObjects;
 namespace FoodDelivery.Controllers
 {
 
-    //[Authorize]
+    [Authorize]
     [Route("api/restaurants/{restaurantId}/menus")]
     [ApiController]
     public class MenusController : ControllerBase
@@ -37,7 +37,7 @@ namespace FoodDelivery.Controllers
 
 
         //Add a MenuItem
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public IActionResult CreateMenuForRestaurant(Guid restaurantId, [FromBody] MenuItemForCreationDto menuItem)
         {

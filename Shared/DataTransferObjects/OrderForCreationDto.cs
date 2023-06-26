@@ -6,6 +6,6 @@ using System.Threading.Tasks;
 
 namespace Shared.DataTransferObjects
 {
-    public record OrderForCreationDto(DateTime OrderDate, DateTime RequestedDeliveryTime, decimal TotalAmount);
+    public record OrderForCreationDto(DateTime OrderDate, int? Quantity, DateTime RequestedDeliveryTime, decimal TotalAmount);
 
 }

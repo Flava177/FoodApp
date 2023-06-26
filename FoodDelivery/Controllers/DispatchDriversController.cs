@@ -32,7 +32,7 @@ namespace FoodDelivery.Controllers
 
 
         [HttpPost]
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateDriver([FromBody] DispatchDriverForCreationDto dispatch)
         {
             if (dispatch is null) 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Shared.DataTransferObjects
 {
-    public record OrderDto(Guid Id, DateTime OrderDate, DateTime RequestedDeliveryTime, decimal TotalAmount);
+    public record OrderDto(Guid Id, DateTime OrderDate, int? Quantity, DateTime RequestedDeliveryTime, decimal TotalAmount);
     //{
 
     //    public DispatchDriverDto DispatchDriver { get; init; }

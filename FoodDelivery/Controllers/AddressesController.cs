@@ -6,7 +6,6 @@ using Shared.DataTransferObjects;
 
 namespace FoodDelivery.Controllers
 {
-    [Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class AddressesController : ControllerBase
@@ -30,7 +29,7 @@ namespace FoodDelivery.Controllers
             return Ok(address);
         }
 
-
+        [Authorize(Roles ="Admin")]
         [HttpPost]
         public IActionResult CreateAddress([FromBody] AddressForCreationDto address)
         {

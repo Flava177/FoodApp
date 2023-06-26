@@ -6,7 +6,7 @@ using Shared.DataTransferObjects;
 
 namespace FoodDelivery.Controllers
 {
-    //[Authorize]
+    [Authorize]
     [Route("api/restaurants/{restaurantId}/menus/{menuId}/orders")]
     //[Route("api/[Controller]/action")]
     [ApiController]
@@ -36,6 +36,7 @@ namespace FoodDelivery.Controllers
 
 
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateOrderForMenuItem(Guid restaurantId, Guid menuItemId, string userId, int orderStatusId, Guid dispatchDriver, [FromBody] OrderForCreationDto order)
         {
             if (order is null)
