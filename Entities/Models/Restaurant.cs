@@ -26,14 +26,16 @@ namespace Entities.Models
         public string PhoneNumber { get; set; }
 
         [Required(ErrorMessage = "Start time is required.")]
+        [Display(Name = "Start Time")]
         [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh\\:mm}")]
-        public TimeSpan StartTime { get; set; }
+        public string StartTime { get; set; }
+        
 
         [Required(ErrorMessage = "End time is required.")]
+        [Display(Name = "Start Time")]
         [DataType(DataType.Time)]
-        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:hh\\:mm}")]
-        public TimeSpan EndTime { get; set; }
+        public string EndTime { get; set; }
+
 
         [ForeignKey(nameof(Address))]
         public Guid AddressId { get; set; }

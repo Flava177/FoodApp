@@ -14,13 +14,13 @@ namespace Repository
 
         public IEnumerable<User> GetAllUsers(bool trackChanges) =>
             FindAll(trackChanges)
-                .OrderBy(c => c.FirstName)
+                .OrderBy(c => c.Id)
                .ToList();
 
         public User GetUser(string userId, bool trackChanges) =>
 
-            FindByCondition(c => c.FirstName.Equals(userId), trackChanges)
-                .SingleOrDefault() ?? throw new Exception("Status not found.");
+            FindByCondition(c => c.Id.Equals(userId), trackChanges)
+                .SingleOrDefault() ?? throw new Exception("User not found.");
 
         //public User GetUser(int userId, bool trackChanges)
         //{

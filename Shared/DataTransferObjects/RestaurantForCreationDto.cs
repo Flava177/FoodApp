@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Shared.DataTransferObjects
 {
-    public record RestaurantForCreationDto(string Name, string Email, string PhoneNumber, TimeSpan StartTime, TimeSpan EndTime, Guid AddressId);
+    public record RestaurantForCreationDto(string Name, string Email, string PhoneNumber, string StartTime, string EndTime, Guid AddressId);
 }
