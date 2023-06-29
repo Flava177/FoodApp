@@ -13,5 +13,6 @@ namespace Contracts
         MenuItem GetMenu(Guid restaurantId, Guid id, bool trackChanges);
         void CreateMenuItem(Guid restaurantId, MenuItem menuItem);
 
+        void DeleteMenuItem(MenuItem menuItem);
     }
 }

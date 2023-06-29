@@ -24,6 +24,9 @@ namespace FoodDelivery
             CreateMap<RestaurantForCreationDto, Restaurant>();
             CreateMap<MenuItemForCreationDto, MenuItem>();
             CreateMap<UserForRegistrationDto, User>();
+
+            //Update DTO's
+            CreateMap<MenuForUpdateDto, MenuItem>();
         }
     }
 }

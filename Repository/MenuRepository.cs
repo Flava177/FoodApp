@@ -33,5 +33,10 @@ namespace Repository
             Create(menuItem);
         }
 
+        public void DeleteMenuItem(MenuItem menuItem)
+        {
+            Delete(menuItem);
+        }
+
     }
 }

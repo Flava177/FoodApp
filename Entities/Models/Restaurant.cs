@@ -41,5 +41,7 @@ namespace Entities.Models
         public Guid AddressId { get; set; }
         public Address? Address { get; set; }
 
+        public IEnumerable<MenuItem>? MenuItems { get; set; }
+
     }
 }

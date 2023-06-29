@@ -12,5 +12,7 @@ namespace Service.Contracts
         IEnumerable<MenuItemDto> GetAllMenu(Guid restaurantId, bool trackChanges);
         MenuItemDto GetMenu(Guid restaurantId, Guid id, bool trackChanges);
         MenuItemDto MenuItemForCreation(Guid restaurantId, MenuItemForCreationDto menuItemForCreation, bool trackChanges);
+        void DeleteMenuForRestaurant(Guid restaurantId, Guid id, bool trackChanges);
+        void UpdateMenuForRestaurant(Guid restaurantId, Guid id, MenuForUpdateDto menuForUpdate, bool trackChanges);
     }
 }
