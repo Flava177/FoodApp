@@ -50,5 +50,40 @@ namespace FoodDelivery.Controllers
                 new { restaurantId, id = menuToReturn.Id },
                 menuToReturn);
         }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpDelete]
+        public IActionResult DeleteMenuForRestaurant( Guid restaurantId, Guid id)
+        {
+            _service.MenuService.DeleteMenuForRestaurant(restaurantId, id, trackChanges:false);
+
+            var response = new
+            {
+                message = "Deleted successfully"
+            };
+
+            return Ok(response);
+        }
+
+
+        [Authorize(Roles = "Admin")]
+        [HttpPut("{id:guid}")]
+        public IActionResult UpdateMenuForRestaurant(Guid restaurantId, Guid id, [FromBody] MenuForUpdateDto menuForUpdate)
+        {
+            if (menuForUpdate is null)
+                return BadRequest("MenuItemForCreationDto");
+
+            _service.MenuService.UpdateMenuForRestaurant(restaurantId, id, menuForUpdate, trackChanges: true);
+
+            //var response = new
+            //{
+            //    message = "Updated successfully"
+            //};
+
+            //return Ok(response);
+
+            return NoContent();
+        }
     }
 }

@@ -25,6 +25,7 @@ namespace Service
             _mapper = mapper;
         }
 
+        //Get All Menus
         public IEnumerable<MenuItemDto> GetAllMenu(Guid restaurantId, bool trackChanges)
         {
             var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges) ?? throw new RestaurantNotFoundException(restaurantId);
@@ -35,7 +36,8 @@ namespace Service
             return menuDto;
 
         }
-    
+
+        //Get Single MenuItem
         public MenuItemDto GetMenu(Guid restaurantId, Guid id, bool trackChanges)
         {
             var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges);
@@ -53,7 +55,7 @@ namespace Service
             return menu;
         }
 
-
+        //Create MenuItem
         public MenuItemDto MenuItemForCreation(Guid restaurantId, MenuItemForCreationDto menuItemForCreation, bool trackChanges)
         {
             var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges) ?? throw new RestaurantNotFoundException(restaurantId);
@@ -68,5 +70,29 @@ namespace Service
             return menuToReturn;
         }
 
+        //Delete MenuItem 
+        public void DeleteMenuForRestaurant(Guid restaurantId, Guid id, bool trackChanges) 
+        {
+            var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges) ?? throw new RestaurantNotFoundException(restaurantId);
+
+            var menuForRestaurant = _repository.Menu.GetMenu(restaurantId, id, trackChanges) ?? throw new MenuNotFoundException(id);
+
+            _repository.Menu.DeleteMenuItem(menuForRestaurant);
+            _repository.Save();
+        }
+
+
+        //Update MenuItem
+        public void UpdateMenuForRestaurant(Guid restaurantId, Guid id, MenuForUpdateDto menuForUpdate , bool trackChanges)
+        {
+            var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges) ?? throw new RestaurantNotFoundException(restaurantId);
+
+            var menuForRestaurant = _repository.Menu.GetMenu(restaurantId, id, trackChanges) ?? throw new MenuNotFoundException(id);
+
+            _mapper.Map(menuForUpdate, menuForRestaurant);
+            _repository.Save();
+        }
+
+      
     }
 }
