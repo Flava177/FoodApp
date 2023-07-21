@@ -102,3 +102,4 @@ C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\AutoMapp
 C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\GeoCoordinate.NetCore.dll
 C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Daniel\source\repos\FoodDelivery\FoodDelivery\bin\Debug\net7.0\Microsoft.AspNetCore.Mvc.Versioning.dll

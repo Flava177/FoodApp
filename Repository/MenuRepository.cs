@@ -1,11 +1,13 @@
 ﻿using Contracts;
 using Entities.Models;
+using Shared.RequestFeatures;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Repository.Extensions;
 
 namespace Repository
 {
@@ -16,9 +18,12 @@ namespace Repository
             
         }
 
-        public IEnumerable<MenuItem> GetAllMenus(Guid restaurantId, bool trackChanges) 
+        public IEnumerable<MenuItem> GetAllMenus(Guid restaurantId,MenuParameters menuParameters ,bool trackChanges) 
             => FindByCondition(e => e.RestaurantId.Equals(restaurantId), trackChanges)
+            .Search(menuParameters.SearchTerm)
             .OrderBy(m => m.Name)
+            .Skip((menuParameters.PageNumber - 1) * menuParameters.PageSize)
+            .Take(menuParameters.PageSize)
             .ToList();
 
 

@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FoodDelivery.ActionFilters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
@@ -31,11 +32,10 @@ namespace FoodDelivery.Controllers
 
         [Authorize(Roles ="Admin")]
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public IActionResult CreateAddress([FromBody] AddressForCreationDto address)
         {
-            if (address is null)
-                return BadRequest("AddressForCreationDto object is null");
-
+          
             var createdAddress = _service.AddressService.CreateAddress(address);
 
             return CreatedAtRoute("AddressById", new { id = createdAddress.Id },

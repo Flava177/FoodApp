@@ -22,7 +22,7 @@ namespace Repository
         //Get a single order
         public Order GetOrder(Guid restaurantId, Guid id, bool trackChanges) =>
             FindByCondition(e => e.RestaurantId.Equals(restaurantId) && e.Id.Equals(id), trackChanges)
-            .SingleOrDefault();
+            .SingleOrDefault() ?? throw new Exception("Couldnt place");
 
 
         //Place an order

@@ -4,6 +4,7 @@ using Entities.Exceptions;
 using Entities.Models;
 using Service.Contracts;
 using Shared.DataTransferObjects;
+using Shared.RequestFeatures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +27,9 @@ namespace Service
             _mapper = mapper;
         }
 
-        public IEnumerable<RestaurantDto> GetAllRestaurants(bool trackChanges)
+        public IEnumerable<RestaurantDto> GetAllRestaurants(RestaurantParameters restaurantParameters,bool trackChanges)
         {
-            var restaurants = _repository.Restaurant.GetAllRestaurants(trackChanges);
+            var restaurants = _repository.Restaurant.GetAllRestaurants(restaurantParameters, trackChanges);
 
             var restaurantsDto = _mapper.Map<IEnumerable<RestaurantDto>>(restaurants);
 

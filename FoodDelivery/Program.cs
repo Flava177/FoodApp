@@ -1,4 +1,5 @@
 using Contracts;
+using FoodDelivery.ActionFilters;
 using FoodDelivery.Extensions;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.Mvc;
@@ -30,6 +31,8 @@ namespace FoodDelivery
             builder.Services.AddHttpClient();
 
             builder.Services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
+            builder.Services.AddScoped<ValidationFilterAttribute>();
+            builder.Services.ConfigureVersioning();
 
             builder.Services.AddControllers();
             builder.Services.AddEndpointsApiExplorer();

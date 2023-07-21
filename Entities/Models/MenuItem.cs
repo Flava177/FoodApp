@@ -19,6 +19,7 @@ namespace Entities.Models
 
         [MaxLength(100, ErrorMessage = "Maximum length for Description is 100 characters.")]
         public string? Description { get; set; }
+        [Required(ErrorMessage = "Price is a required field.")]
 
         [Column(TypeName = "decimal(18,2)")]
         [Range(0.01, double.MaxValue, ErrorMessage = "Amount must be greater than 0")]

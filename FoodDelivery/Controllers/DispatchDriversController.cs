@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FoodDelivery.ActionFilters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
@@ -32,12 +33,10 @@ namespace FoodDelivery.Controllers
 
 
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [Authorize(Roles = "Admin")]
         public IActionResult CreateDriver([FromBody] DispatchDriverForCreationDto dispatch)
         {
-            if (dispatch is null) 
-
-                return BadRequest("DispatchDriverForCreationDto object is null");
 
             var createdDispatch = _service.DispatchDriverService.CreateDriver(dispatch);
 

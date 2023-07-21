@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FoodDelivery.ActionFilters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
@@ -34,13 +35,13 @@ namespace FoodDelivery.Controllers
             return Ok(order);
         }
 
-
+        //Place an order
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+
         public IActionResult CreateOrderForMenuItem(Guid restaurantId, Guid menuItemId, string userId, int orderStatusId, Guid dispatchDriver, [FromBody] OrderForCreationDto order)
         {
-            if (order is null)
-                return BadRequest("OrderForCreationDto object is null");
-
+          
             var orderToReturn = _service.OrderService.OrderForCreation(restaurantId, menuItemId, userId, orderStatusId, dispatchDriver, order, trackChanges: false);
 
             return Ok(orderToReturn);
