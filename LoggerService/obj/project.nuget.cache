@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< Updated upstream
   "dgSpecHash": "8WGp9IwoMz7Ij8qelptn8LXIBdfVVtfQap865+cwjeuawi6klQ+9DfloYEG8UcAYTt4vvVZMj/gPwoCajvAmkw==",
+=======
+  "dgSpecHash": "v9wRJ1+zCQowTHe9ebDZkZ9mXcvsgPV345tkIivwiCHOalcPwNnrBFpff0Ejtz0hIkB/T0XiWnuMsMVkvatXfw==",
+>>>>>>> Stashed changes
   "success": true,
   "projectFilePath": "C:\\Users\\Daniel\\source\\repos\\FoodDelivery\\LoggerService\\LoggerService.csproj",
   "expectedPackageFiles": [

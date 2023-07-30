@@ -205,6 +205,7 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+<<<<<<< Updated upstream
         }
       }
     },
@@ -264,6 +265,8 @@
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
+=======
+>>>>>>> Stashed changes
         }
       }
     }
