@@ -11,9 +11,9 @@ namespace Contracts
     {
         IEnumerable<Order> GetAllOrders(Guid restaurantId, bool trackChanges);
         Order GetOrder(Guid restaurantId, Guid id, bool trackChanges);
-        //void CreateOrderForMenu(Guid restaurantId, string userId, int orderStatusId, Guid dispatchDriverId, Order order);
-
-        void CreateOrder(Guid restaurantId, Guid menuItemId, string userId,int orderStatusId, Guid dispatchDriver, Order order);
+        void CreateOrder(Guid restaurantId, Guid menuItemId, string userId, Guid dispatchDriver, Order order);
+        Task<Order> GetOrdersAsync(Guid id);
+        Task<List<Order>> GetAllOrdersForUserAsync(string userId);
 
     }
 }
