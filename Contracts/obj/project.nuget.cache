@@ -1,20 +1,6 @@
 {
   "version": 2,
-<<<<<<< HEAD
-<<<<<<< HEAD
-  "dgSpecHash": "zVR5gEinyHxZmEbFTW5/QIedQ49UGjgkaG8jo4/u5avxz8mll9Gs0G8PuEB/0dIWQU8TJavAw+CjWRMZgeAblg==",
-=======
-=======
->>>>>>> FoodDelivery1.1
-<<<<<<< Updated upstream
   "dgSpecHash": "z195C3gpBjrqCGgH6Ov893qiOdZ1mG+L3expY1u2AbhVegnCQFB5gGbkqviy8WRiaJGKY0iRDwQYaF4r0coaQg==",
-=======
-  "dgSpecHash": "zVR5gEinyHxZmEbFTW5/QIedQ49UGjgkaG8jo4/u5avxz8mll9Gs0G8PuEB/0dIWQU8TJavAw+CjWRMZgeAblg==",
->>>>>>> Stashed changes
-<<<<<<< HEAD
->>>>>>> FoodDelivery1.1
-=======
->>>>>>> FoodDelivery1.1
   "success": true,
   "projectFilePath": "C:\\Users\\Daniel\\source\\repos\\FoodDelivery\\Contracts\\Contracts.csproj",
   "expectedPackageFiles": [
@@ -38,5 +24,12 @@
     "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.extensions.options\\7.0.1\\microsoft.extensions.options.7.0.1.nupkg.sha512",
     "C:\\Users\\Daniel\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file C:\\Users\\Daniel\\source\\repos\\FoodDelivery\\Contracts\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
