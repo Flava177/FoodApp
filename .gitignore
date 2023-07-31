@@ -9,3 +9,4 @@ FoodDelivery/obj/Debug/net7.0/FoodDelivery.csproj.AssemblyReference.cache
 LoggerService/obj/Debug/net7.0/LoggerService.csproj.AssemblyReference.cache
 Repository/obj/Debug/net7.0/Repository.csproj.AssemblyReference.cache
 Service/obj/Debug/net7.0/Service.csproj.AssemblyReference.cache
+Service.Contracts/obj/Debug/net7.0/*.AssemblyReference.cache
