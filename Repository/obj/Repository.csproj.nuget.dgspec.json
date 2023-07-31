@@ -209,7 +209,10 @@
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> FoodDelivery1.1
 <<<<<<< Updated upstream
         }
       }
@@ -272,6 +275,9 @@
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.306\\RuntimeIdentifierGraph.json"
 =======
 >>>>>>> Stashed changes
+<<<<<<< HEAD
+>>>>>>> FoodDelivery1.1
+=======
 >>>>>>> FoodDelivery1.1
         }
       }
