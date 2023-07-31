@@ -1,9 +1,11 @@
 ﻿using Entities.Models;
+using FoodDelivery.ActionFilters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using Shared.DataTransferObjects;
+using Shared.RequestFeatures;
 
 namespace FoodDelivery.Controllers
 {
@@ -19,10 +21,10 @@ namespace FoodDelivery.Controllers
 
         //Get All Menus
         [HttpGet]
-        public IActionResult GetMenus(Guid restaurantId)
+        public IActionResult GetMenus(Guid restaurantId, [FromQuery] MenuParameters menuParameters)
         {
 
-            var menus = _service.MenuService.GetAllMenu(restaurantId, trackChanges: false);
+            var menus = _service.MenuService.GetAllMenu(restaurantId, menuParameters, trackChanges: false);
             return Ok(menus);
         }
 
@@ -37,12 +39,11 @@ namespace FoodDelivery.Controllers
 
 
         //Add a MenuItem
-        [Authorize(Roles = "Admin")]
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
+        [Authorize(Roles = "Admin")]
         public IActionResult CreateMenuForRestaurant(Guid restaurantId, [FromBody] MenuItemForCreationDto menuItem)
         {
-            if (menuItem is null) 
-                return BadRequest("MenuItemForCreationDto object is null");
 
             var menuToReturn = _service.MenuService.MenuItemForCreation(restaurantId, menuItem, trackChanges: false);
 
@@ -51,7 +52,7 @@ namespace FoodDelivery.Controllers
                 menuToReturn);
         }
 
-
+        //Delete a Menu
         [Authorize(Roles = "Admin")]
         [HttpDelete]
         public IActionResult DeleteMenuForRestaurant( Guid restaurantId, Guid id)
@@ -67,23 +68,16 @@ namespace FoodDelivery.Controllers
         }
 
 
+        //Update a Menu
         [Authorize(Roles = "Admin")]
         [HttpPut("{id:guid}")]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         public IActionResult UpdateMenuForRestaurant(Guid restaurantId, Guid id, [FromBody] MenuForUpdateDto menuForUpdate)
         {
-            if (menuForUpdate is null)
-                return BadRequest("MenuItemForCreationDto");
 
             _service.MenuService.UpdateMenuForRestaurant(restaurantId, id, menuForUpdate, trackChanges: true);
 
-            //var response = new
-            //{
-            //    message = "Updated successfully"
-            //};
-
-            //return Ok(response);
-
-            return NoContent();
+            return Ok(menuForUpdate);
         }
     }
 }

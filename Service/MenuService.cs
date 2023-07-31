@@ -4,6 +4,7 @@ using Entities.Exceptions;
 using Entities.Models;
 using Service.Contracts;
 using Shared.DataTransferObjects;
+using Shared.RequestFeatures;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.Design;
@@ -26,10 +27,10 @@ namespace Service
         }
 
         //Get All Menus
-        public IEnumerable<MenuItemDto> GetAllMenu(Guid restaurantId, bool trackChanges)
+        public IEnumerable<MenuItemDto> GetAllMenu(Guid restaurantId,MenuParameters menuParameters ,bool trackChanges)
         {
             var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges) ?? throw new RestaurantNotFoundException(restaurantId);
-            var menuFromDb = _repository.Menu.GetAllMenus(restaurantId, trackChanges);
+            var menuFromDb = _repository.Menu.GetAllMenus(restaurantId,menuParameters ,trackChanges);
 
             var menuDto = _mapper.Map<IEnumerable<MenuItemDto>>(menuFromDb);
 

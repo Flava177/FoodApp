@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Shared.DataTransferObjects
 {
-    public record MenuItemForCreationDto(string Name, string Description, decimal Price);
+    public record MenuItemForCreationDto : MenuForManipulationDto;
+ 
 }

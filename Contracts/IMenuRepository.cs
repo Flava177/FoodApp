@@ -1,4 +1,5 @@
 ﻿using Entities.Models;
+using Shared.RequestFeatures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Contracts
 {
     public interface IMenuRepository
     {
-        IEnumerable<MenuItem> GetAllMenus (Guid restaurantId, bool trackChanges);
+        IEnumerable<MenuItem> GetAllMenus (Guid restaurantId, MenuParameters menuParameters, bool trackChanges);
         MenuItem GetMenu(Guid restaurantId, Guid id, bool trackChanges);
         void CreateMenuItem(Guid restaurantId, MenuItem menuItem);
 

@@ -34,6 +34,9 @@
             "projectReferences": {
               "C:\\Users\\Daniel\\source\\repos\\FoodDelivery\\Entities\\Entities.csproj": {
                 "projectPath": "C:\\Users\\Daniel\\source\\repos\\FoodDelivery\\Entities\\Entities.csproj"
+              },
+              "C:\\Users\\Daniel\\source\\repos\\FoodDelivery\\Shared\\Shared.csproj": {
+                "projectPath": "C:\\Users\\Daniel\\source\\repos\\FoodDelivery\\Shared\\Shared.csproj"
               }
             }
           }
@@ -190,6 +193,10 @@
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[7.0.8, )"
+            },
+            "Microsoft.AspNetCore.Mvc.Versioning": {
+              "target": "Package",
+              "version": "[5.1.0, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",

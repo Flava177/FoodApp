@@ -6,5 +6,5 @@ using System.Threading.Tasks;
 
 namespace Shared.DataTransferObjects
 {
-    public record MenuForUpdateDto(string Name, string Description, decimal Price);
+    public record MenuForUpdateDto : MenuForManipulationDto;
 }

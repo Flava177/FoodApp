@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using FoodDelivery.ActionFilters;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Service.Contracts;
 using Shared.DataTransferObjects;
+using Shared.RequestFeatures;
 
 namespace FoodDelivery.Controllers
 {
+    [ApiVersion("1.0")]
     [Authorize]
     [Route("api/[controller]")]
     [ApiController]
@@ -15,10 +18,9 @@ namespace FoodDelivery.Controllers
         public RestaurantsController(IServiceManager service) => _service = service;
 
         [HttpGet]
-        public IActionResult GetRestaurants()
+        public IActionResult GetRestaurants([FromQuery] RestaurantParameters restaurantParameters)
         {
-
-            var restaurants = _service.RestaurantService.GetAllRestaurants(trackChanges: false);
+            var restaurants = _service.RestaurantService.GetAllRestaurants(restaurantParameters,trackChanges: false);
             return Ok(restaurants);
 
         }
@@ -32,13 +34,12 @@ namespace FoodDelivery.Controllers
         }
 
         [HttpPost]
+        [ServiceFilter(typeof(ValidationFilterAttribute))]
         [Authorize(Roles = "Admin")]
         public IActionResult CreateRestaurant([FromBody] RestaurantForCreationDto restaurant)
         { 
-            if (restaurant is null)
-                return BadRequest("RestaurantForCreationDto object is null");
-
             var createdRestaurant = _service.RestaurantService.CreateRestaurant(restaurant);
+
             return CreatedAtRoute("RestaurantById", new { id = createdRestaurant.Id }, createdRestaurant);
         }
     }

@@ -49,7 +49,7 @@ namespace Service
             return orderDto;
         }
 
-        public OrderDto OrderForCreation(Guid restaurantId, Guid menuItemId, string userId, int orderStatusId, Guid dispatchDriver, OrderForCreationDto orderForCreation, bool trackChanges)
+        public OrderDto OrderForCreation(Guid restaurantId, Guid menuItemId, string userId, Guid dispatchDriver, OrderForCreationDto orderForCreation, bool trackChanges)
         {
             var restaurant = _repository.Restaurant.GetRestaurant(restaurantId, trackChanges) ?? throw new RestaurantNotFoundException(restaurantId);
 
@@ -59,14 +59,12 @@ namespace Service
 
             var getUserId = _repository.User.GetUser(userId, trackChanges);
           
-
-            var status = _repository.StatusValue.GetStatus(orderStatusId, trackChanges) ?? throw new Exception("Order Status Unknown..Please wait");
-
+            //var orderEntity = _mapper.Map<Order>(orderForCreation);
             var orderEntity = _mapper.Map<Order>(orderForCreation);
 
-            
+            orderEntity.OrderStatusId = 1;
 
-            _repository.Order.CreateOrder(restaurantId, menuItemId, userId, orderStatusId, dispatchDriver, orderEntity);
+            _repository.Order.CreateOrder(restaurantId, menuItemId, userId, dispatchDriver, orderEntity);
             _repository.Save();
 
             var orderToReturn = _mapper.Map<OrderDto>(orderEntity);

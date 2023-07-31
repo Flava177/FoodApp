@@ -1,4 +1,5 @@
 ﻿using Shared.DataTransferObjects;
+using Shared.RequestFeatures;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Service.Contracts
 {
     public interface IRestaurantService
     {
-        IEnumerable<RestaurantDto> GetAllRestaurants(bool trackChanges);
+        IEnumerable<RestaurantDto> GetAllRestaurants(RestaurantParameters restaurantParameters, bool trackChanges);
         RestaurantDto GetRestaurant(Guid restaurantId, bool trackChanges);
 
         RestaurantDto CreateRestaurant(RestaurantForCreationDto restaurant);

@@ -22,19 +22,28 @@ namespace Repository
         //Get a single order
         public Order GetOrder(Guid restaurantId, Guid id, bool trackChanges) =>
             FindByCondition(e => e.RestaurantId.Equals(restaurantId) && e.Id.Equals(id), trackChanges)
-            .SingleOrDefault();
+            .SingleOrDefault() ?? throw new Exception("Couldnt place");
 
 
         //Place an order
-        public void CreateOrder(Guid restaurantId, Guid menuItemId, string userId, int orderStatusId, Guid dispatchDriver, Order order)
+        public void CreateOrder(Guid restaurantId, Guid menuItemId, string userId,Guid dispatchDriver, Order order)
         {
             order.RestaurantId = restaurantId;
             order.MenuItemId = menuItemId;
             order.UserId = userId;
-            order.OrderStatusId = orderStatusId;
             order.DispatchDriverId = dispatchDriver;
 
             Create(order);
+        }
+
+        public Task<Order> GetOrdersAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<List<Order>> GetAllOrdersForUserAsync(string userId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

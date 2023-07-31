@@ -1,6 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "zVR5gEinyHxZmEbFTW5/QIedQ49UGjgkaG8jo4/u5avxz8mll9Gs0G8PuEB/0dIWQU8TJavAw+CjWRMZgeAblg==",
+=======
+<<<<<<< Updated upstream
+  "dgSpecHash": "z195C3gpBjrqCGgH6Ov893qiOdZ1mG+L3expY1u2AbhVegnCQFB5gGbkqviy8WRiaJGKY0iRDwQYaF4r0coaQg==",
+=======
+  "dgSpecHash": "zVR5gEinyHxZmEbFTW5/QIedQ49UGjgkaG8jo4/u5avxz8mll9Gs0G8PuEB/0dIWQU8TJavAw+CjWRMZgeAblg==",
+>>>>>>> Stashed changes
+>>>>>>> FoodDelivery1.1
   "success": true,
   "projectFilePath": "C:\\Users\\Daniel\\source\\repos\\FoodDelivery\\Contracts\\Contracts.csproj",
   "expectedPackageFiles": [
